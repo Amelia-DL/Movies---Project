@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    title Movies App
+    link(rel="stylesheet" href="/styles.css")
+  body
+    header.navbar
+      .nav-inner
+        a.brand(href="/")
+          span.logo M
+          span.brand-text MoviesApp
+        nav.nav-links
+          a(href="/") Home
+          if !user
+            a(href="/users/register") Register
+            a(href="/users/login") Login
+          else
+            a(href="/movies/add") Add Movie
+            form(action="/users/logout" method="post" class="logout-form")
+              button(type="submit" class="btn ghost") Logout
+
+    main.container
+      block content
+
+    footer.footer
+      p © MoviesApp CPAN 212 Project A&A
+
+    script(src="/app.js")

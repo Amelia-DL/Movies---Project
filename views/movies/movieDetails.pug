@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  .details
+    .details-hero
+      h1 #{movie.name}
+      p.meta #{movie.year} • #{movie.genres.join(', ')} • #{movie.rating || 'N/A'}/10
+      p.description #{movie.description}
+
+      if user && user.id == String(movie.user._id)
+        .actions
+          a.btn(href=`/movies/${movie._id}/edit`) Edit
+          form(action=`/movies/${movie._id}?_method=DELETE` method="post" style="display:inline")
+            button.btn.danger(type="submit") Delete
+
+    .details-sidebar
+      p Posted by #{movie.user ? movie.user.username : 'unknown'}
+      p Created at #{movie.createdAt}

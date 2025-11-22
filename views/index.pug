@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  if movies.length
+    h2.section-title Featured Movies
+    .grid
+      each m in movies
+        .card
+          a.card-link(href=`/movies/${m._id}`)
+            .card-poster
+              .poster-inner
+                h3.card-title #{m.name}
+                p.card-meta #{m.year} • #{m.user ? m.user.username : 'unknown'} • #{m.rating || 'N/A'}/10
+            .card-actions
+              a.btn.small(href=`/movies/${m._id}`) View
+  else
+    .empty
+      h3 No movies found
+      p Add your first movie!

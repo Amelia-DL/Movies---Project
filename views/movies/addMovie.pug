@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .form-card
+    h2 Add / Edit Movie
+    if errors
+      ul.errors
+        each e in errors
+          li #{e}
+    form(action=action method="post" class="form")
+      label.label Name
+      input.input(type="text" name="name" value=form.name)
+
+      label.label Description
+      textarea.input(name="description") #{form.description}
+
+      .row
+        .col
+          label.label Year
+          input.input(type="number" name="year" value=form.year)
+        .col
+          label.label Rating
+          input.input(type="number" name="rating" min="0" max="10" value=form.rating)
+
+      label.label Genres (comma separated)
+      input.input(type="text" name="genres" value=(form.genres && form.genres.join(', ')))
+
+      button.btn(type="submit") Save

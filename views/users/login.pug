@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .form-card
+    h2 Welcome back
+    if errors
+      ul.errors
+        each e in errors
+          li #{e}
+
+    form(action="/users/login" method="post" class="form")
+      label.label Email
+      input.input(type="email" name="email")
+      label.label Password
+      input.input(type="password" name="password")
+      button.btn(type="submit") Login
